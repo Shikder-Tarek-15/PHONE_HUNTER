@@ -44,7 +44,7 @@ const displayPhone = (phones, isTrue) => {
                 phone in this price
               </p>
               <div class="card-actions justify-center">
-                <button class="btn btn-accent">Buy Now</button>
+                <button onclick= "handleShowDetails('${phone.slug}')" class="btn btn-accent">Buy Now</button>
               </div>
             </div>
     `;
@@ -52,6 +52,16 @@ const displayPhone = (phones, isTrue) => {
     phoneContainer.appendChild(phoneCard);
   });
   loadingBar(false);
+};
+
+// Modal function
+const handleShowDetails = async (id) => {
+  console.log("I am clicked", id);
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phone/${id}`
+  );
+  const data = await res.json();
+  console.log(data);
 };
 
 const searchPhone = (isTrue) => {
